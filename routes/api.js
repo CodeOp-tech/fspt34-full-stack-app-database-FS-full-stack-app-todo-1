@@ -1,6 +1,7 @@
-var express = require("express");
+import express from "express";
+
 var router = express.Router();
-const db = require("../model/helper");
+import db from "../model/helper.js";
 
 router.get("/", (req, res) => {
   res.send("Welcome to the API");
@@ -36,4 +37,4 @@ router.delete("/todos/:todo_id", (req, res) => {
   //
 });
 
-module.exports = router;
+export default router;

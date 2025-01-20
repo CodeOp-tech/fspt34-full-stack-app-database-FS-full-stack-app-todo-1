@@ -1,10 +1,17 @@
-var createError = require("http-errors");
-var express = require("express");
-var path = require("path");
-var logger = require("morgan");
-var cors = require("cors");
+import createError from "http-errors";
+import express from "express";
+import path from "path";
+import logger from "morgan";
+import cors from "cors";
 
-var apiRouter = require("./routes/api");
+import router from "./routes/api.js";
+
+import { fileURLToPath } from "url";
+import { dirname } from "path";
+
+// Define __dirname for ES Modules
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 var app = express();
 
@@ -20,7 +27,7 @@ app.get("/", function(req, res, next) {
   res.send("Access the API at path /api");
 });
 
-app.use("/api", apiRouter);
+app.use("/api", router);
 
 // Anything that doesn't match the above, send back index.html
 app.get("*", (req, res) => {
@@ -43,4 +50,4 @@ app.use(function(err, req, res, next) {
   res.send("error");
 });
 
-module.exports = app;
+export default app;
