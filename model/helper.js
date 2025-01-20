@@ -1,7 +1,7 @@
-require("dotenv").config();
-const mysql = require("mysql");
+import "dotenv/config";
+import mysql from "mysql2";
 
-module.exports = async function db(query) {
+async function db(query) {
   const results = {
     data: [],
     error: null
@@ -61,4 +61,6 @@ module.exports = async function db(query) {
   });
 
   return promise;
-};
+}
+
+export default db;
